@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-
+//import "./App.css";
 
 
 
@@ -39,17 +39,17 @@ export default function TextForm(props) {
         
         <textarea className="form-control" value= {text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white'}} id="mybox" rows="8"></textarea>
         </div>
-        <button classname= "btn btn-primary mx-1" onClick= {handleUpClick}>Convert to Uppercase</button>
-        <button classname= "btn btn-primary mx-1" onClick= {handleLoClick}>Convert to Lowercase</button>
+        <button disabled={text.length===0} className= "btn btn-primary mx-1 my-1" onClick= {handleUpClick}>Convert to Uppercase</button>
+        <button disabled={text.length===0} className= "btn btn-primary mx-1 my-1" onClick= {handleLoClick}>Convert to Lowercase</button>
 
       
     </div>
-    <div clasname= "container my-4" style={{color: props.mode==='dark'?'white':'#042743'}}>
+    <div clasname= "container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
       <h2>{props.heading}</h2>
-      <p>{text.split(" ").length} words and {text.length} characters</p>
-      <p>{0.008 * text.split(" ").length} Total Read Time</p>
+      <p>{text.split(" ").filter((element=>{return element.length!==0})).length} words and {text.length} characters</p>
+      <p>{0.008 * text.split(" ").filter((element=>{return element.length!==0})).length} Total Read Time</p>
       <h2>Preview</h2>
-      <p>{text.length>0?text: "Enter something in the aboue textbox to analyze"}</p>
+      <p>{text.length>0?text: "Nothing To Preview!"}</p>
 
     </div>
     </>
